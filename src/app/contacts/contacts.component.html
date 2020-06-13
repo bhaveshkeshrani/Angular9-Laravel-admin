@@ -1,0 +1,56 @@
+<div class="row">
+  <div class="col-lg-12 grid-margin stretch-card">
+    <div class="card">
+      <div class="card-body">
+        <h4 class="card-title">Contacts</h4>
+        <!-- <p class="card-description">
+          Add class
+          <code>.table-striped</code>
+        </p> -->
+        <div class="table-responsive">
+          <table class="table table-hover">
+            <thead>
+              <tr>
+                <th>
+                  Fullname
+                </th>
+                <th>
+                  Email
+                </th>
+                <th>
+                  Phone
+                </th>
+                <th>
+                  Location
+                </th>
+                <th>
+                  Website
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let contact of contacts">
+                <td class="py-1">
+                  <!-- <img src="assets/images/faces-clipart/pic-1.png" alt="image" /> -->
+                  {{contact.fullname}}
+                </td>
+                <td>
+                  {{contact.email}}
+                </td>
+                <td>
+                  {{contact.phone}}
+                </td>
+                <td>
+                  {{contact.location}}
+                </td>
+                <td>
+                  {{contact.website}}
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
