@@ -3,6 +3,7 @@
     <div class="card">
       <div class="card-body">
         <h4 class="card-title">Contacts</h4>
+        <!-- {{ fullnameTest }} -->
         <!-- <p class="card-description">
           Add class
           <code>.table-striped</code>
@@ -11,6 +12,9 @@
           <table class="table table-hover">
             <thead>
               <tr>
+                <th>
+                  ID
+                </th>
                 <th>
                   Fullname
                 </th>
@@ -21,18 +25,21 @@
                   Phone
                 </th>
                 <th>
-                  Location
+                  Created Date
                 </th>
                 <th>
-                  Website
+                  Action
                 </th>
               </tr>
             </thead>
             <tbody>
               <tr *ngFor="let contact of contacts">
+                <td>
+                  {{contact.id}}
+                </td>
                 <td class="py-1">
                   <!-- <img src="assets/images/faces-clipart/pic-1.png" alt="image" /> -->
-                  {{contact.fullname}}
+                  {{contact.name}}
                 </td>
                 <td>
                   {{contact.email}}
@@ -41,10 +48,12 @@
                   {{contact.phone}}
                 </td>
                 <td>
-                  {{contact.location}}
+                  {{contact.createdDate}}
                 </td>
                 <td>
-                  {{contact.website}}
+                  <!-- <button class="btn btn-lg btn-outline-primary" (click)="open(content)">Launch demo modal</button> -->
+                  <button (click)="viewContacts(contact)" class="btn btn-outline-secondary icon-btn" type="button"><i class="mdi mdi-eye"></i></button>
+                  <button (click)="open(content,contact)" class="btn btn-outline-secondary icon-btn" type="button"><i class="mdi mdi-border-color"></i></button>
                 </td>
               </tr>
             </tbody>
@@ -54,3 +63,32 @@
     </div>
   </div>
 </div>
+<ng-template #content let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Profile update</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <form class="forms-sample" id="form1" name="form1" #form="ngForm" (ngSubmit)="onSubmit()">
+      <div class="form-group">
+        <label for="fullname">Name</label>
+        <input type="text" class="form-control" id="fullname" value="{{ fullname }}" placeholder="Name" name="fullname" [(ngModel)]="fullname">
+      </div>
+      <div class="form-group">
+        <label for="email_address">Email address</label>
+        <input type="email" class="form-control" id="email" value="{{ email }}" name="email" placeholder="Email" [(ngModel)]="email">
+      </div>
+      <div class="form-group">
+        <label for="phone">Phone</label>
+        <input type="text" class="form-control" id="phone" value="{{ phone }}" name="phone" placeholder="Phone no" [(ngModel)]="phone">
+      </div>
+      <button type="submit" class="btn btn-outline-dark">Save</button>
+
+    </form>
+  </div>
+  <div class="modal-footer">
+    <button type="submit" class="btn btn-outline-dark">Save</button>
+  </div>
+</ng-template>
